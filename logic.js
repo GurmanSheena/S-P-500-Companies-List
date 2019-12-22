@@ -17,11 +17,17 @@ fetch(url)
 
     //individual ticker - need to loop through 500 times at least
     var i;
-    for (i = 0; i <= tickers.rows.length; i++) {
+    for (i = 0; i < tickers.rows.length; i++) {
       var ticker = tickers.rows.item(i);
+
       parseTickerInformation(ticker);
     }
-  })
+    quick(sp500_JSON);
+    createCompaniesList();
+
+  });
+
+
 
 //get the core info about the company
 function parseTickerInformation(ticker) {
@@ -38,7 +44,29 @@ function parseTickerInformation(ticker) {
   sp500_JSON.push(company);
 
 }
-console.log(sp500_JSON);
+
+
+
+function createCompaniesList() {
+
+  let table = document.getElementById("list");
+  let row = document.createElement("tr");
+  createTableData();
+
+
+
+
+}
+
+function createTableData() {
+
+}
+//quick console
+function quick(input) {
+  console.log(input);
+}
+
+
 
 /*
 Help doc: https://stackoverflow.com/questions/53127383/how-to-pull-data-from-wikipedia-page
