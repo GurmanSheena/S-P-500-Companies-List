@@ -25,7 +25,6 @@ fetch(url)
     quick(sp500_JSON);
     //quick(JSON.stringify(sp500_JSON));
     createTableFromJSON(sp500_JSON);
-
   });
 
 //get the core info about the company
