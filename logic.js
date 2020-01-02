@@ -39,8 +39,14 @@ function parseTickerInformation(ticker) {
   let date_first_added = ticker.cells[6].innerText;
   let cik = ticker.cells[7].innerText;
   let sec_filings = "https://www.sec.gov/cgi-bin/browse-edgar?CIK=" + symbol + "&action=getcompany";
-  let link = (exchange.includes("NASDAQ")) ? "https://www.nasdaq.com/market-activity/stocks/" + symbol : "https://www.nyse.com/quote/XNYS:" + symbol;
-  let yahoo_finance = "https://finance.yahoo.com/quote/" + symbol;
+  let exchange_profile = (exchange.includes("NASDAQ")) ? "https://www.nasdaq.com/market-activity/stocks/" + symbol : "https://www.nyse.com/quote/XNYS:" + symbol;
+  let yahoo_finance_profile = "https://finance.yahoo.com/quote/" + symbol;
+  let seekingalpha_profile = "https://seekingalpha.com/symbol/" + symbol + "/dividends";
+  let dividends = {
+    "scorecard": seekingalpha_profile + "/scorecard",
+    "history": seekingalpha_profile + "/history"
+  };
+
 
   var company = {
     "symbol": symbol,
@@ -53,8 +59,9 @@ function parseTickerInformation(ticker) {
     "date_first_added": date_first_added,
     "cik": cik,
     "sec_filings": sec_filings,
-    "link": link,
-    "yahoo_finance": yahoo_finance
+    "exchange_profile": exchange_profile,
+    "yahoo_finance_profile": yahoo_finance_profile,
+    "divideds": dividends
   };
 
   sp500_JSON.push(company);
