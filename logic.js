@@ -69,18 +69,18 @@ function parseTickerInformation(ticker) {
 
 function createList(data) {
   let list = document.getElementById("companiesList");
-  var contentDiv = document.createElement('div');
 
   let i;
   for (i = 0; i < data.length; i++) {
-    var listItem = document.createElement('li');
-    listItem.style.class = 'listItem';
+    var contentDiv = document.createElement('div');
     for (var key in data[i]) {
       let div = document.createElement('div');
       div.innerHTML = data[i][key];
       contentDiv.appendChild(div);
     }
 
+    var listItem = document.createElement('li');
+    listItem.style.class = 'listItem';
     listItem.appendChild(contentDiv);
     list.appendChild(listItem);
   }
