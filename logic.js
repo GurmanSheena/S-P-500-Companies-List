@@ -1,6 +1,6 @@
-var url = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&origin=*&page=List_of_S%26P_500_companies';
-var tables;
-var sp500_JSON = [];
+let url = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&origin=*&page=List_of_S%26P_500_companies';
+let tables;
+let sp500_JSON = [];
 
 fetch(url)
   .then(function(response) {
@@ -13,25 +13,26 @@ fetch(url)
     tables = html.querySelectorAll(".wikitable");
 
     //Provides a list of all S&P 500 Company Tickers
-    var tickers = tables[0];
+    let tickers = tables[0];
 
     //individual ticker - need to loop through 500 times at least
-    var i;
+    let i;
     for (i = 1; i < tickers.rows.length; i++) {
-      var ticker = tickers.rows.item(i);
+      let ticker = tickers.rows.item(i);
 
       parseTickerInformation(ticker);
     }
     quick(sp500_JSON);
+    createList(sp500_JSON);
     //quick(JSON.stringify(sp500_JSON));
-    createTableFromJSON(sp500_JSON);
+    //createTableFromJSON(sp500_JSON);
   });
 
 //get the core info about the company
 function parseTickerInformation(ticker) {
-  var symbol = ticker.cells[0].innerText.trim();
-  var name = ticker.cells[1].innerText;
-  var exchange = ((ticker.cells[0].innerHTML).includes("nasdaq")) ? "NASDAQ" : "NYSE";
+  let symbol = ticker.cells[0].innerText.trim();
+  let name = ticker.cells[1].innerText;
+  let exchange = ((ticker.cells[0].innerHTML).includes("nasdaq")) ? "NASDAQ" : "NYSE";
   let industry = ticker.cells[3].innerText;
   let sector = ticker.cells[4].innerText;
   let founded = ticker.cells[8].innerText.trim();
@@ -48,7 +49,7 @@ function parseTickerInformation(ticker) {
   };
 
 
-  var company = {
+  let company = {
     "symbol": symbol,
     "name": name,
     "exchange": exchange,
@@ -67,43 +68,51 @@ function parseTickerInformation(ticker) {
   sp500_JSON.push(company);
 }
 
+function createList(data) {
+  let div = document.getElementById("containier");
+  let list = document.getElementById("companiesList");
+
+  //div.appendChild();
+}
+
+
+//quick console
+function quick(input) {
+  console.log(input);
+}
+
 function createTableFromJSON(data) {
-  var sp500_JSON = data;
-  var col = [];
-  for (var i = 0; i < sp500_JSON.length; i++) {
-    for (var key in sp500_JSON[i]) {
+  let sp500_JSON = data;
+  let col = [];
+  for (let i = 0; i < sp500_JSON.length; i++) {
+    for (let key in sp500_JSON[i]) {
       if (col.indexOf(key) === -1) {
         col.push(key);
       }
     }
   }
 
-  var table = document.createElement("table");
-  var tr = table.insertRow(-1);
+  let table = document.createElement("table");
+  let tr = table.insertRow(-1);
 
-  for (var i = 0; i < col.length; i++) {
-    var th = document.createElement("th");
+  for (let i = 0; i < col.length; i++) {
+    let th = document.createElement("th");
     th.innerHTML = col[i].toUpperCase();
     tr.appendChild(th);
   }
 
-  for (var i = 0; i < sp500_JSON.length; i++) {
+  for (let i = 0; i < sp500_JSON.length; i++) {
     tr = table.insertRow(-1);
 
-    for (var j = 0; j < col.length; j++) {
-      var tabCell = tr.insertCell(-1);
+    for (let j = 0; j < col.length; j++) {
+      let tabCell = tr.insertCell(-1);
       tabCell.innerHTML = sp500_JSON[i][col[j]];
     }
   }
 
-  var div = document.getElementById("companieslist");
+  let div = document.getElementById("companieslist");
   div.innerHTML = "";
   div.appendChild(table);
-}
-
-//quick console
-function quick(input) {
-  console.log(input);
 }
 
 /*
