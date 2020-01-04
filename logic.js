@@ -1,6 +1,7 @@
 let url = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&origin=*&page=List_of_S%26P_500_companies';
 let tables;
 let sp500_JSON = [];
+let list = document.getElementById("companiesList");
 
 fetch(url)
   .then(function(response) {
@@ -69,12 +70,30 @@ function parseTickerInformation(ticker) {
 }
 
 function createList(data) {
-  let div = document.getElementById("containier");
-  let list = document.getElementById("companiesList");
 
-  //div.appendChild();
+
+  let i;
+  for (i = 0; i < data.length; i++) {
+    var listItem = document.createElement('li');
+    listItem.style.class = "listItem";
+    listItem.innerHTML = data[i].name;
+    list.appendChild(listItem);
+  }
 }
 
+let searchInput = document.getElementById("search");
+searchInput.addEventListener('keyup', search);
+
+function search() {
+  searchInput.value.toLowerCase();
+  let listItems = list.querySelectorAll('.li');
+
+  let i;
+  for (i = 0; i < listItems.length; i++) {
+
+  }
+
+}
 
 //quick console
 function quick(input) {
