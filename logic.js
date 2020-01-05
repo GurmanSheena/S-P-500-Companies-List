@@ -79,10 +79,10 @@ function createList(data) {
     }
 
     var listItem = document.createElement('li');
-    listItem.style.class = 'listItem';
     listItem.appendChild(contentDiv);
     contentDiv.className = "contentDiv";
     list.appendChild(listItem);
+    listItem.style.class = 'listItem';
   }
 }
 
