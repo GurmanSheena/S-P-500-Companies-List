@@ -43,8 +43,6 @@ function parseTickerInformation(ticker) {
   let yahoo_finance_profile = "https://finance.yahoo.com/quote/" + symbol;
   let dividends = "https://seekingalpha.com/symbol/" + symbol + "/dividends";
 
-
-
   let company = {
     "name": name,
     "symbol": symbol,
@@ -58,7 +56,7 @@ function parseTickerInformation(ticker) {
     "sec_filings": sec_filings,
     "exchange_profile": exchange_profile,
     "yahoo_finance_profile": yahoo_finance_profile,
-    "divideds": dividends
+    "dividends": dividends
   };
 
   sp500_JSON.push(company);
@@ -73,7 +71,21 @@ function createList(data) {
 
     for (var key in data[i]) {
       let div = document.createElement('div');
-      div.innerHTML = data[i][key];
+
+      if (key == "name") {
+        div.innerHTML = "<a href =" + data[i].exchange_profile + " class='companyLinks' target='_blank'>" + data[i][key] + "</a>";
+      } else if (key == "sec_filings") {
+        div.innerHTML = "<a href =" + data[i][key] + " class='companyLinks' target='_blank' rel='nofollow'>SEC Filings</a>";
+      } else if (key == "exchange_profile") {
+        div.innerHTML = "<a href =" + data[i][key] + " class='companyLinks' target='_blank' rel='nofollow'>Exchange Profile</a>";
+      } else if (key == "yahoo_finance_profile") {
+        div.innerHTML = "<a href =" + data[i][key] + " class='companyLinks' target='_blank' rel='nofollow'>Yahoo Finance Profile</a>";
+      } else if (key == "dividends") {
+        div.innerHTML = "<a href =" + data[i][key] + " class='companyLinks' target='_blank' rel='nofollow'>Dividend Information</a>";
+      } else {
+        div.innerHTML = data[i][key];
+      }
+
       contentDiv.appendChild(div);
       div.className = "infoDivs " + key;
     }
