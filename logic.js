@@ -29,8 +29,8 @@ fetch(url)
 
 //get the core info about the company
 function parseTickerInformation(ticker) {
-  let symbol = ticker.cells[0].innerText.trim();
   let name = ticker.cells[1].innerText;
+  let symbol = ticker.cells[0].innerText.trim();
   let exchange = ((ticker.cells[0].innerHTML).includes("nasdaq")) ? "NASDAQ" : "NYSE";
   let industry = ticker.cells[3].innerText;
   let sector = ticker.cells[4].innerText;
@@ -41,16 +41,13 @@ function parseTickerInformation(ticker) {
   let sec_filings = "https://www.sec.gov/cgi-bin/browse-edgar?CIK=" + symbol + "&action=getcompany";
   let exchange_profile = (exchange.includes("NASDAQ")) ? "https://www.nasdaq.com/market-activity/stocks/" + symbol : "https://www.nyse.com/quote/XNYS:" + symbol;
   let yahoo_finance_profile = "https://finance.yahoo.com/quote/" + symbol;
-  let seekingalpha_profile = "https://seekingalpha.com/symbol/" + symbol + "/dividends";
-  let dividends = {
-    "scorecard": seekingalpha_profile + "/scorecard",
-    "history": seekingalpha_profile + "/history"
-  };
+  let dividends = "https://seekingalpha.com/symbol/" + symbol + "/dividends";
+
 
 
   let company = {
-    "symbol": symbol,
     "name": name,
+    "symbol": symbol,
     "exchange": exchange,
     "industry": industry,
     "sector": sector,
@@ -73,21 +70,29 @@ function createList(data) {
   let i;
   for (i = 0; i < data.length; i++) {
     var contentDiv = document.createElement('div');
+
     for (var key in data[i]) {
       let div = document.createElement('div');
       div.innerHTML = data[i][key];
       contentDiv.appendChild(div);
+      div.className = "infoDivs " + key;
     }
 
     var listItem = document.createElement('li');
     listItem.style.class = 'listItem';
     listItem.appendChild(contentDiv);
+    contentDiv.className = "contentDiv";
     list.appendChild(listItem);
   }
 }
 
 let searchInput = document.getElementById("search");
 searchInput.addEventListener('keyup', search);
+
+/**
+let searchBySymbolInput = document.getElementById("searchBySymbol");
+searchBySymbolInput.addEventListener('keyup', searchBySymbol);
+**/
 
 function search() {
   let list = document.getElementById("companiesList");
@@ -103,8 +108,28 @@ function search() {
       listItems[i].style.display = 'none';
     }
   }
-
 }
+
+/**
+function searchBySymbol() {
+  let list = document.getElementById("companiesList");
+  let searchValue = searchBySymbolInput.value.toLowerCase();
+  let listItems = list.querySelectorAll('li');
+  let symbol = list.querySelectorAll('.symbol');
+  let i;
+  for (i = 0; i < listItems.length; i++) {
+    let match = symbol[0].innerHTML.toLowerCase().indexOf(searchValue);
+    if (match > -1) {
+      listItems[i].style.display = '';
+      quick("yes");
+    } else {
+      listItems[i].style.display = 'none';
+      quick("no");
+    }
+  }
+}
+**/
+
 
 //quick console
 function quick(input) {
