@@ -122,6 +122,12 @@ function search() {
   }
 }
 
+
+function lazyLoad() {
+  var w = window.innerWidth;
+  var h = window.innerHeight;
+}
+
 /**
 function searchBySymbol() {
   let list = document.getElementById("companiesList");
