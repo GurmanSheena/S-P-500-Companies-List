@@ -73,7 +73,7 @@ function createList(data) {
       let div = document.createElement('div');
 
       if (key == "name") {
-        div.innerHTML = "<a href =" + data[i].exchange_profile + " class='companyLinks' target='_blank'>" + data[i][key] + "</a>";
+        div.innerHTML = "<a href =" + data[i].yahoo_finance_profile + " class='companyLinks' target='_blank'>" + data[i][key] + "</a>";
       } else if (key == "sec_filings") {
         div.innerHTML = "<a href =" + data[i][key] + " class='companyLinks' target='_blank' rel='nofollow'>SEC Filings</a>";
       } else if (key == "exchange_profile") {
