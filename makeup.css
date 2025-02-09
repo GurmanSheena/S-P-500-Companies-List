@@ -1,10 +1,10 @@
 h1{
-  font-size: 60px;
+  font-size: 30px;
   font-family: arial;
 }
 
 body {
-  font-size: 20px;
+  font-size: 12px;
   font-family: arial;
   color: black;
   scroll-behavior: smooth;
@@ -13,6 +13,7 @@ body {
 
 ul {
   list-style-type: none;
+  font-size: 12px;
   margin: 0;
   padding: 0;
 }
@@ -22,7 +23,7 @@ span {
 }
 
 input {
-  font-size: 25px;
+  font-size: 12px;
 }
 
 p {
@@ -31,6 +32,7 @@ p {
 
 input[type=text], select {
   font-family: arial;
+  font-size: 12px;
   width: 100%;
   padding: 15px 20px;
   margin: 0px 0;
@@ -69,7 +71,7 @@ div.contentDiv {
   border: 0.5px solid black;
   background-color: black;
   color: white;
-  font-size: 25px;
+  font-size: 12px;
 
 }
 
@@ -77,8 +79,8 @@ div.contentDiv {
   border: 0.5px solid white;
   background-color: green;
   color: white;
-  font-size: 38px;
-  background-image: linear-gradient(90deg, green, green, yellow);
+  font-size: 20px;
+  background-image: linear-gradient(90deg, rgb(0, 128, 111), rgb(0, 87, 128), rgb(255, 255, 246));
 }
 
 .result {
@@ -154,6 +156,7 @@ p.hint {
 
   input[type=text], select {
     width: 100%;
+    font-size: 25px;
     padding: 5px 10px;
     margin: 8px 0;
     display: inline-block;
