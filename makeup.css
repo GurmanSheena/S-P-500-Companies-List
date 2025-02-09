@@ -27,22 +27,21 @@ input {
 }
 
 p {
-  font-size: 20px;
+  font-size: 12px;
 }
 
 input[type=text], select {
   font-family: arial;
-  font-size: 12px;
-  width: 100%;
-  padding: 15px 20px;
-  margin: 0px 0;
+  width: 300px;
+  height: 70px;
+  padding: 2px 2px;
+  margin: 5px 0;
   display: inline-block;
-  border: 0.5px solid black;
+  border: 1px solid #ccc;
   box-sizing: border-box;
-  background-color: #f2f2f2;
-  color: black;
-  font-size: 38px;
-
+  text-align: center;
+  color: rgb(3, 3, 3);
+  font-size: 25px;
 }
 
 .logo {
@@ -54,7 +53,6 @@ div {
   padding: 5px 10px;
   margin: 8px 0;
   font-size: 18px;
-
 }
 
 a {color: black;}
@@ -145,6 +143,18 @@ p.hint {
   text-align: center;
   padding: 10px;
   margin-top: 7px;
+}
+
+.container {
+  display: flex; /* Aligns children in a row by default */
+  justify-content: space-between; /* Optional: Add space between the divs */
+  border: 1px solid #ccc;
+}
+.box {
+  width: 45%; /* Set the width of each div */
+  padding: 20px;
+  
+  text-align: center;
 }
 
 @media only screen and (max-width:620px) {
