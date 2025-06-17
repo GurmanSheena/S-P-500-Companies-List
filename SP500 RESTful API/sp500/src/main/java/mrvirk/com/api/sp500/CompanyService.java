@@ -3,13 +3,17 @@ package mrvirk.com.api.sp500;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CompanyService {
 
+    public static void main(String[] args) {
+        System.out.println("CompanyService is running .....");
+    }
+    
       // Injecting Repository into service class
     @Autowired 
       private CompanyRepo repo;
@@ -50,8 +54,8 @@ public class CompanyService {
                 = existingCompany.get();
 
             updatedCompany.setName(newCompany.getName());
-            updatedCompany.setPhone(newCompany.getPhone());
-            updatedCompany.setEmail(newCompany.getEmail());
+            updatedCompany.setSymbol(newCompany.getSymbol());
+            updatedCompany.setExchange(newCompany.getExchange());
 
             repo.deleteById(String.valueOf(id));
             return repo.save(updatedCompany);
