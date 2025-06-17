@@ -16,8 +16,7 @@ public class Company {
 
     @Id
     @Indexed
-    private int id; // "indexed" for faster retrieval,
-                    // @Id for marking this field as the key
+    private int id; 
     private String name;
     private String symbol;
     private String exchange;
