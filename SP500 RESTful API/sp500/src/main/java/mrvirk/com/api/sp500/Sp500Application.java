@@ -8,6 +8,7 @@ public class Sp500Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Sp500Application.class, args);
+		System.out.println("API is running .....");
 	}
 
 }
